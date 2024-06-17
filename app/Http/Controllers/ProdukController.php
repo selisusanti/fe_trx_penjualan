@@ -29,7 +29,6 @@ class ProdukController extends Controller
         $page           = 1; 
         $search         = $request->input('search');
         $coba           = "";
-        $disini         = "15";
 
         $dataOutput     = $this->produkService->index($limit,$page,$search);
         $totalData      = $dataOutput->data->total;

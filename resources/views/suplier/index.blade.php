@@ -14,7 +14,13 @@
                     <div class="col-md-6 right-margin">
                         <input type="text" class="form-control anti-xss" id="srcField4"  placeholder="Search">
                     </div>
-
+                    <div class="col-md-6 left-margin">
+                        <a href="/transaksi/formatSuplier">
+                            <button class="btn btn-primary float-right link-button">
+                                <i class="fa fa-plus"></i> Download Format Import
+                            </button>
+                        </a>
+                    </div> 
                     <div class="col-md-6 left-margin">
                         <a href="/suplier/tambah">
                             <button class="btn btn-primary float-right link-button">
