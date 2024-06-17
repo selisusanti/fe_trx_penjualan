@@ -3,12 +3,11 @@
 namespace App\Services\Implemen;
 
 
-interface ProdukServiceImpl{
+interface SuplierServiceImpl{
     
     public function index($perpage,$page,$search);
     public function save($request);
-    public function update($request);
+    public function update($request, $id);
     public function delete($id);
-    public function getById($id);
     
 }

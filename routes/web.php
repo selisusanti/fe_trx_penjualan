@@ -30,8 +30,11 @@ Route::get('logout', [LoginController::class, 'logout']);
 Route::prefix('produk')->group(function(){
     Route::get('/', [ProdukController::class, 'index']);
     Route::get('/tambah', [ProdukController::class, 'tambah']);
-    Route::get('/ubah', [ProdukController::class, 'ubah']);
+    Route::post('/store', [ProdukController::class, 'store'])->name('produk.store');
+    Route::get('/ubah/{id}', [ProdukController::class, 'ubah']);
+    Route::post('/update', [ProdukController::class, 'update'])->name('produk.update');
     Route::post('/data', [ProdukController::class, 'data']);
+    Route::get('/delete/{id}', [ProdukController::class, 'delete']);
 });
 
 

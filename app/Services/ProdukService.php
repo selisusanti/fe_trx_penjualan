@@ -36,9 +36,9 @@ class ProdukService implements ProdukServiceImpl{
         ]);
     }
 
-    public function update($request, $id)
+    public function update($request)
     {
-        return ApiHandler::request("PUT","/products/{id}",[
+        return ApiHandler::request("PUT","/api/products/".$request['id'],[
             'code'=> $request['code'],
             'product_name'=> $request['product_name'],
             'description'=> $request['description'],
@@ -51,7 +51,25 @@ class ProdukService implements ProdukServiceImpl{
 
     public function delete($id)
     {
-        return ApiHandler::request("delete","/products/{id}");
+        return ApiHandler::request("delete","/api/products/$id");
     }
+
+    public function getByID($id)
+    {
+        return ApiHandler::request("get","/api/products/$id");
+    }
+
+    public function store($request){
+        return ApiHandler::requestMultipart("POST","/api/products",[
+            "code" => $request['code'],
+            "product_name" => $request['product_name'],
+            "description" => $request['description'],
+            "price" => $request['price'],
+            "stock" => $request['stock'],
+            "picture" => $request['picture'],
+            "suplier_id" => $request['suplier_id'],
+        ]);
+    }
+    
 
 }

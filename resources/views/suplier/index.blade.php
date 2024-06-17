@@ -6,17 +6,17 @@
     
     <div class="content">
         <!-- Simple -->
-        <h4 style="color: #707070; !important;">Produk</h4>
+        <h4 style="color: #707070; !important;">Suplier</h4>
         <div class="block block-rounded block-bordered">
             <div class="block-content">
-                <h6 style="color: #184a7c; !important;" class="text-left">List Data Produk </h6>
+                <h6 style="color: #184a7c; !important;" class="text-left">List Data Suplier </h6>
                 <div class="form-group row">
                     <div class="col-md-6 right-margin">
                         <input type="text" class="form-control anti-xss" id="srcField4"  placeholder="Search">
                     </div>
 
                     <div class="col-md-6 left-margin">
-                        <a href="/produk/tambah">
+                        <a href="/transaksi/tambah">
                             <button class="btn btn-primary float-right link-button">
                                 <i class="fa fa-plus"></i> Buat Daftar Baru
                             </button>
@@ -28,13 +28,11 @@
                         <thead class="text-center" style="color: #184a7c; !important;">
                             <tr>
                                 <th>No</th>
-                                <th>Kode</th>
-                                <th>Nama Produk</th>
-                                <th>Harga</th>
-                                <th>Stock</th>
+                                <th>User</th>
+                                <th>Produk</th>
                                 <th>Suplier</th>
-                                <th>Keterangan</th>
-                                <th>Gambar</th>
+                                <th>Quantity</th>
+                                <th>transaction_date</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -80,7 +78,7 @@
                 serverSide: true,
                 ordering  : false,
                 ajax:{
-                        "url": "/produk/data",
+                        "url": "/transaksi/data",
                         "dataType": "json",
                         "type": "POST",
                         "data":{ 
@@ -99,23 +97,11 @@
                     },
                 columns: [
                     { "data": "No", "orderable": false},
-                    { "data": "code", "orderable": false},
-                    { "data": "product_name", "orderable": false},
-                    { "data": "price", "orderable": false},
-                    { "data": "stock", "orderable": false},
+                    { "data": "users", "orderable": false},
+                    { "data": "product", "orderable": false},
                     { "data": "suplier", "orderable": false},
-                    { "data": "description", "orderable": false},
-                    {
-                        data: 'picture',
-                        name: 'picture',
-                        render: function (data, type, oObj) {
-                            if (data != null) {
-                                return '<span style="text-align: center"><img src="{{ asset('  + data + ')}}" width="98" height="98"></span>';
-                            } else {
-                                return '';
-                            }
-                        }
-                    },
+                    { "data": "quantity", "orderable": false},
+                    { "data": "transaction_date", "orderable": false},
                     { "data": "Actions", "orderable": false},
                 ],
                 language: {
@@ -144,7 +130,7 @@
         e.preventDefault();
         const el       = $(this);
         var id         = el.data('id');
-        var link        = "/produk/delete/"+id;
+        var link        = "/pendaftaran-mobile/delete-pendaftaran-mobile/"+id;
         $("#form-delete").attr('action', link);
 
         Swal.fire({

@@ -42,25 +42,23 @@ class ProdukController extends Controller
             foreach ($dataOutput->data->data as $key => $value)
             {
                 $action_text                        = "";
-                $nestedData['No']                   = $nomor."-".$limit;
+                $url    = env('API_BASE_URL').$value->picture;
+                $nestedData['No']                   = $nomor;
                 $nestedData['code']                 = !empty($value->code) ? $value->code : '-';
                 $nestedData['product_name']                 = !empty($value->product_name) ? $value->product_name : '-';
                 $nestedData['description']                 = !empty($value->description) ? $value->description : '-';
                 $nestedData['price']                 = !empty($value->price) ? $value->price : '-';
                 $nestedData['stock']                 = !empty($value->stock) ? $value->stock : '-';
-                // $nestedData['picture']                 = !empty($value->picture) ? env('BASE_API') . Storage::url($value->picture) : '-';
-                $nestedData['picture']                 = !empty($value->picture) ? $value->picture : '-';
-                // $nestedData['insert_by']                 = !empty($value->insert_by->name) ? $value->insert_by->name : '-';
+                $nestedData['picture']                 = !empty($url) ? env('API_BASE_URL').$url : '-';
                 $nestedData['suplier']                 = !empty($value->suplier->name) ? $value->suplier->name : '-';
-                
-                //     $action_text                = $action_text.'<a href="/pendaftaran-mobile/detail-pendaftaran-mobile/'.$value->id.'">
-                //                                     <button type="button" class="btn btn-sm link-button" data-toggle="tooltip" data-placement="top" title="Edit">
-                //                                         <i class="fa fa-pencil-alt" style="color:#1b3759;"></i>
-                //                                     </button>
-                //                                 </a>'; 
-                //     $action_text = $action_text.'<button type="button" class="btn btn-sm" id="delete_data" data-toggle="tooltip" data-placement="top" data-id="'.$value->id.'" title="Delete">
-                //                     <i class="fa fa-trash-alt" style="color:red;"></i>
-                //                 </button>'; 
+                $action_text                = $action_text.'<a href="/produk/ubah/'.$value->id.'">
+                                                <button type="button" class="btn btn-sm link-button" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                    <i class="fa fa-pencil-alt" style="color:#1b3759;"></i>
+                                                </button>
+                                            </a>'; 
+                $action_text                = $action_text.'<button type="button" class="btn btn-sm" id="delete_data" data-toggle="tooltip" data-placement="top" data-id="'.$value->id.'" title="Delete">
+                                                <i class="fa fa-trash-alt" style="color:red;"></i>
+                                             </button>'; 
                 $nestedData['Actions']      = $action_text;                               
                 $data[] = $nestedData;
                 $nomor++;
@@ -77,4 +75,52 @@ class ProdukController extends Controller
 
     }
 
+
+    public function tambah(){
+        return view('produk.tambah');
+    }
+
+    
+    public function store(Request $request){
+        $resp       = $this->produkService->store($request);
+        if ($resp->status == true) { 
+            Session::flash('success', $resp->message);
+            return redirect('/produk');
+        }else{
+           Session::flash('error', $resp->message);
+           return redirect('/produk/tambah')->withInput();
+       }
+    }
+
+
+
+    public function delete($id){
+        $resp       = $this->produkService->delete($id);
+
+        if ($resp->status) {
+            Session::flash('success', $resp->message);
+            return redirect('produk');
+        }else{
+           Session::flash('error', $resp->message);
+           return redirect('produk');
+       }
+    }
+
+    public function ubah($id){
+        $dataOutput     = $this->produkService->getById($id);
+        return view('produk.ubah')
+        ->with('value', $dataOutput->data);
+    }
+
+
+    public function update(Request $request){
+        $resp       = $this->produkService->update($request);
+        if ($resp->status == true) { 
+            Session::flash('success', $resp->message);
+            return redirect('/produk');
+        }else{
+           Session::flash('error', $resp->message);
+           return redirect('/produk/ubah/'.$request->id)->withInput();
+       }
+    }
 }
