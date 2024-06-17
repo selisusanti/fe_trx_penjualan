@@ -30,6 +30,7 @@
                                 <th>No</th>
                                 <th>User</th>
                                 <th>Produk</th>
+                                <th>Suplier</th>
                                 <th>Quantity</th>
                                 <th>transaction_date</th>
                                 <th>Action</th>
@@ -100,6 +101,7 @@
                     { "data": "product", "orderable": false},
                     { "data": "suplier", "orderable": false},
                     { "data": "quantity", "orderable": false},
+                    { "data": "transaction_date", "orderable": false},
                     { "data": "Actions", "orderable": false},
                 ],
                 language: {

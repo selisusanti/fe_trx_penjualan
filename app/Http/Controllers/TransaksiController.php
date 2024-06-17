@@ -50,6 +50,7 @@ class TransaksiController extends Controller
                 $nestedData['suplier']              = !empty($value->product->suplier->name) ? $value->product->suplier->name : '-';
                 $nestedData['quantity']             = !empty($value->quantity) ? $value->quantity : '-';
                 $nestedData['users']             = !empty($value->users->fullname) ? $value->users->fullname : '-';
+                $nestedData['transaction_date']             = !empty($value->transaction_date) ? $value->transaction_date : '-';
                 $nestedData['Actions']              = $action_text;                               
                 $data[] = $nestedData;
                 $nomor++;
