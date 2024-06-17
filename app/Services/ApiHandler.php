@@ -88,6 +88,7 @@ class ApiHandler
                     }
             }
         }
+
         try {
 
             if ($isFile) {
@@ -109,7 +110,6 @@ class ApiHandler
             $response = $e->getResponse();
             if($response === NULL) abort(500, "Cannot get response from backend. Please contact System Admin");
             $jsonObj = json_decode((string) $response->getBody());
-            // $statusCode            = json_decode((string) $response->getStatusCode());
 
             if($useAccessToken){
                 if($jsonObj !== NULL){
@@ -117,7 +117,6 @@ class ApiHandler
                     if ($jsonObj->code == 401) {
                         ApiHandler::removeAccessToken("Your session is expired, please login again.");
                     }else if ($jsonObj->code == 403) {
-                        // if user is unauthorized (403) move to dashboard or login if not logged in
                         Session::put("access_token",null);
                         Session::flush();
                         Session::flash('error', $jsonObj->message);
@@ -125,15 +124,6 @@ class ApiHandler
                     }
 
                 }
-                // if ($statusCode == 401) {
-                //     ApiHandler::removeAccessToken("Your session is expired, please login again.");
-                // }else if ($statusCode == 403) {
-                //     // if user is unauthorized (403) move to dashboard or login if not logged in
-                //     Session::put("access_token",null);
-                //     Session::flush();
-                //     Session::flash('error', $jsonObj->message);
-                //     Redirect::away('/')->send();
-                // }
             }
             
             return new BaseResponse($jsonObj->status ?? false,$jsonObj->code ?? null,$jsonObj->message ?? null , $jsonObj->data ?? null);

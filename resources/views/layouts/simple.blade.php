@@ -91,7 +91,7 @@
                                 <img class="img-avatar img-avatar48 img-avatar-thumb" src="{{ asset('/media/errors/404/notset.png') }}" alt="">
                                 &nbsp;
                                 <div class="text-left">
-                                    <p class="font-size-base font-italic text-muted mb-0">{{ ucwords(session::get('fullname')) }}</p>
+                                    <p class="font-size-base font-italic text-muted mb-0"></p>
                                 </div>
                             </div>
                         </a>
@@ -121,13 +121,13 @@
                 <div class="content-side content-side-full">
                     <ul class="nav-main">
                        
-                        <li class="nav-main-item active">
-                            <a class="nav-main-link link-button" href="/dashboard">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link link-button {{ Request::segment(1) ==  'dashboard' ? 'active' : ''}}" href="/dashboard">
                                 <i class="nav-main-link-icon"></i>
                                 <span class="nav-main-link-name">Dashboard</span>
                             </a>
                         </li>
-                        <li class="nav-main-heading nav-main-item " style="text-transform: capitalize; padding-top:10px;"> 
+                        <li class="nav-main-heading nav-main-item {{ in_array( Request::segment(1) , ['produk','suplier'])  ? 'open' : ''}}" style="text-transform: capitalize; padding-top:10px;"> 
         
                             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="true" href="#">
                                 <i class="nav-main-link-icon"></i>
@@ -136,7 +136,7 @@
                                 <!-- Sub Menu -->
                             <ul class="nav-main-submenu" style="padding-left: 1px; background-color: #FFF;">
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link nav-expand link-button" href="/produk">
+                                    <a class="nav-main-link nav-expand link-button {{ Request::segment(1) ==  'produk' ? 'active' : ''}}" href="/produk">
                                         <i class="nav-main-link-icon "></i>
                                         <span class="nav-main-link-name">Produk</span>
                                     </a>
@@ -150,7 +150,7 @@
                             </ul>
                         </li>
                         <li class="nav-main-item active">
-                            <a class="nav-main-link link-button" href="/transaksi">
+                            <a class="nav-main-link link-button {{ Request::segment(1) ==  'transaksi' ? 'active' : ''}}" href="/transaksi">
                                 <i class="nav-main-link-icon"></i>
                                 <span class="nav-main-link-name">Transaksi</span>
                             </a>
