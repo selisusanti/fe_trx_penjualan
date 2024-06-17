@@ -10,36 +10,38 @@
     
     <div class="content">
         <!-- Simple -->
-        <h4 style="color: #707070; !important;">Produk</h4>
+        <h4 style="color: #707070; !important;">Suplier</h4>
         <div class="block block-rounded block-bordered text-left">
             <div class="block-content">
-                <h6 style="color: #184a7c; !important;" class="text-left">Tambah</h6>
-                <form action="{{ route('produk.store') }}" method="post" id="update-form" enctype="multipart/form-data">
+                <h6 style="color: #184a7c; !important;" class="text-left">Ubah</h6>
+                <form action="{{ route('suplier.update') }}" method="post" id="update-form" enctype="multipart/form-data">
                 @csrf
+                 <input type="hidden" class="id" name="id" value="{{ $value->id }}">
+
                    <!-- Basic Elements -->
-                    <div class="form-group row">
+                   <div class="form-group row">
                         <div class="col-sm-6">
-                            <label class="col-sm-3 col-form-label">Code</label>
+                            <label class="col-sm-3 col-form-label">Code Suplier</label>
                             <div class="col-sm-12">
                                 <input type="text" 
                                         class="form-control fullname-uma anti-xss" 
-                                        id="code" 
-                                        name="code" 
-                                        placeholder="code" 
-                                        value="{{ old('code') }}"
+                                        id="supplier_code" 
+                                        name="supplier_code" 
+                                        placeholder="supplier_code" 
+                                        value="{{ $value->supplier_code }}"
                                         min="3"
                                         required>
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <label class="col-sm-3 col-form-label">Product Name</label>
+                            <label class="col-sm-3 col-form-label">Name</label>
                             <div class="col-sm-12">
                                 <input type="text" 
                                         class="form-control fullname-uma" 
-                                        id="product_name" 
-                                        name="product_name" 
-                                        placeholder="product_name" 
-                                        value="{{ old('product_name') }}"
+                                        id="name" 
+                                        name="name" 
+                                        placeholder="name" 
+                                        value="{{ $value->name }}"
                                         required>
                             </div>
                         </div>
@@ -47,79 +49,62 @@
 
                     <div class="form-group row">
                         <div class="col-sm-6">
-                            <label class="col-sm-3 col-form-label">Description</label>
+                            <label class="col-sm-3 col-form-label">Address</label>
                             <div class="col-sm-12">
                                 <input type="text" 
                                         class="form-control fullname-uma anti-xss" 
-                                        id="description" 
-                                        name="description" 
-                                        placeholder="description" 
-                                        value="{{ old('description') }}"
+                                        id="address" 
+                                        name="address" 
+                                        placeholder="address" 
+                                        value="{{ $value->address }}"
                                         min="3"
                                         required>
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <label class="col-sm-3 col-form-label">Price</label>
+                            <label class="col-sm-3 col-form-label">PIC</label>
                             <div class="col-sm-12">
-                                <input type="number" 
+                                <input type="text" 
                                         class="form-control fullname-uma" 
-                                        id="price" 
-                                        name="price" 
-                                        placeholder="price" 
-                                        value="{{ old('price') }}"
+                                        id="pic" 
+                                        name="pic" 
+                                        placeholder="pic" 
+                                        value="{{ old('pic') ?? $value->pic }}"
                                         required>
                             </div>
                         </div>
                     </div>    
                     <div class="form-group row">
                         <div class="col-sm-6">
-                            <label class="col-sm-3 col-form-label">Stock</label>
+                            <label class="col-sm-3 col-form-label">Phone Number</label>
                             <div class="col-sm-12">
                                 <input type="number" 
                                         class="form-control fullname-uma" 
-                                        id="stock" 
-                                        name="stock" 
-                                        placeholder="Stock" 
-                                        value="{{ old('stock') }}"
+                                        id="phone_number" 
+                                        name="phone_number" 
+                                        placeholder="phone_number" 
+                                        value="{{ old('phone_number') ?? $value->phone_number }}"
                                         required>
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <label class="col-sm-3 col-form-label">Suplier ID</label>
+                            <label class="col-sm-3 col-form-label">NPWP</label>
                             <div class="col-sm-12">
                                 <input type="number" 
                                         class="form-control fullname-uma" 
-                                        id="suplier_id" 
-                                        name="suplier_id" 
-                                        placeholder="suplier_id" 
-                                        value="{{ old('suplier_id') }}"
+                                        id="npwp" 
+                                        name="npwp" 
+                                        placeholder="npwp" 
+                                        maxlength="16"
+                                        value="{{ old('npwp') ?? $value->npwp }}"
                                         required>
-                            </div>
-                        </div>
-                    </div>
-                       
-                    <div class="form-group row">
-                        <div class="col-sm-6">
-                            <label class="col-sm-3 col-form-label">Picture</label>
-                            <div class="col-sm-12">
-                                <input
-                                    accept="image/*"
-                                    type="file" 
-                                    class="custom-file-input" 
-                                    data-toggle="custom-file-input" 
-                                    id="create-picture" 
-                                    name="picture"
-                                    required
-                                >
-                            <label class="custom-file-label" for="create-picture">Choose Picture</label>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <input type="button" class="btn btn-primary btn-sm submit-loader btnSave" id="btn-password" value="Buat Daftar Baru">
-                        <a href="/produk">
+                        <a href="/suplier">
                             <input type="button" class="btn btn-primary btn-sm submit-loader" id="btn-password" value="Batalkan">
                         </a>
                     </div>

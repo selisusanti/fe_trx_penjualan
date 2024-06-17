@@ -16,7 +16,7 @@
                     </div>
 
                     <div class="col-md-6 left-margin">
-                        <a href="/transaksi/tambah">
+                        <a href="/suplier/tambah">
                             <button class="btn btn-primary float-right link-button">
                                 <i class="fa fa-plus"></i> Buat Daftar Baru
                             </button>
@@ -28,11 +28,12 @@
                         <thead class="text-center" style="color: #184a7c; !important;">
                             <tr>
                                 <th>No</th>
-                                <th>User</th>
-                                <th>Produk</th>
-                                <th>Suplier</th>
-                                <th>Quantity</th>
-                                <th>transaction_date</th>
+                                <th>Supplier Code</th>
+                                <th>Nama</th>
+                                <th>Address</th>
+                                <th>PIC</th>
+                                <th>Phone number</th>
+                                <th>NPWP</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -78,7 +79,7 @@
                 serverSide: true,
                 ordering  : false,
                 ajax:{
-                        "url": "/transaksi/data",
+                        "url": "/suplier/data",
                         "dataType": "json",
                         "type": "POST",
                         "data":{ 
@@ -97,11 +98,12 @@
                     },
                 columns: [
                     { "data": "No", "orderable": false},
-                    { "data": "users", "orderable": false},
-                    { "data": "product", "orderable": false},
-                    { "data": "suplier", "orderable": false},
-                    { "data": "quantity", "orderable": false},
-                    { "data": "transaction_date", "orderable": false},
+                    { "data": "supplier_code", "orderable": false},
+                    { "data": "name", "orderable": false},
+                    { "data": "address", "orderable": false},
+                    { "data": "pic", "orderable": false},
+                    { "data": "phone_number", "orderable": false},
+                    { "data": "npwp", "orderable": false},
                     { "data": "Actions", "orderable": false},
                 ],
                 language: {
@@ -130,7 +132,7 @@
         e.preventDefault();
         const el       = $(this);
         var id         = el.data('id');
-        var link        = "/pendaftaran-mobile/delete-pendaftaran-mobile/"+id;
+        var link        = "/suplier/delete/"+id;
         $("#form-delete").attr('action', link);
 
         Swal.fire({

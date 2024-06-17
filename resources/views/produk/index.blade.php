@@ -144,7 +144,7 @@
         e.preventDefault();
         const el       = $(this);
         var id         = el.data('id');
-        var link        = "/produk/delete/"+id;
+        var link        = "/suplier/delete/"+id;
         $("#form-delete").attr('action', link);
 
         Swal.fire({

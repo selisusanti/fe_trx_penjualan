@@ -142,7 +142,7 @@
                                     </a>
                                 </li>   
                                 <li class="nav-main-item">
-                                    <a class="nav-main-link nav-expand link-button" href="/suplier">
+                                    <a class="nav-main-link nav-expand link-button {{ Request::segment(1) ==  'suplier' ? 'active' : ''}}" href="/suplier">
                                         <i class="nav-main-link-icon "></i>
                                         <span class="nav-main-link-name">Suplier</span>
                                     </a>

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\SuplierController;
 use App\Http\Controllers\TransaksiController;
 
 /*
@@ -35,6 +36,18 @@ Route::prefix('produk')->group(function(){
     Route::post('/update', [ProdukController::class, 'update'])->name('produk.update');
     Route::post('/data', [ProdukController::class, 'data']);
     Route::get('/delete/{id}', [ProdukController::class, 'delete']);
+});
+
+
+// Authentication
+Route::prefix('suplier')->group(function(){
+    Route::get('/', [SuplierController::class, 'index']);
+    Route::get('/tambah', [SuplierController::class, 'tambah']);
+    Route::post('/store', [SuplierController::class, 'store'])->name('suplier.store');
+    Route::get('/ubah/{id}', [SuplierController::class, 'ubah']);
+    Route::post('/update', [SuplierController::class, 'update'])->name('suplier.update');
+    Route::post('/data', [SuplierController::class, 'data']);
+    Route::get('/delete/{id}', [SuplierController::class, 'delete']);
 });
 
 
