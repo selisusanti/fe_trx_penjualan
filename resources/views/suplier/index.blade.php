@@ -14,14 +14,14 @@
                     <div class="col-md-6 right-margin">
                         <input type="text" class="form-control anti-xss" id="srcField4"  placeholder="Search">
                     </div>
-                    <div class="col-md-6 left-margin">
+                    <div class="col-md-2 left-margin">
                         <a href="/transaksi/formatSuplier">
                             <button class="btn btn-primary float-right link-button">
-                                <i class="fa fa-plus"></i> Download Format Import
+                                <i class="fa fa-plus"></i> Format
                             </button>
                         </a>
                     </div> 
-                    <div class="col-md-6 left-margin">
+                    <div class="col-md-4 left-margin">
                         <a href="/suplier/tambah">
                             <button class="btn btn-primary float-right link-button">
                                 <i class="fa fa-plus"></i> Buat Daftar Baru
@@ -88,10 +88,13 @@
                         "url": "/suplier/data",
                         "dataType": "json",
                         "type": "POST",
-                        "data":{ 
-                                _token: "{{csrf_token()}}",
-                                search: filter_data,
-                                },
+                        "data": function (request) {
+                            request._token = "{{ csrf_token() }}";
+                            request.perPage = request.length;
+                            request.page = (request.start / request.length) + 1;
+                            request.search = request.search.value;
+                            
+                        },
                         error: function(e){
                             // alert(e);
                             if(e.status === 200){

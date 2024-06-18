@@ -16,20 +16,29 @@ class SuplierController extends Controller
     }
 
     public function index(Request $request){
-        return view('suplier.index');
+        $limit = '';
+        $page  = '';
+        $search = '';
+        $dataOutput     = $this->suplierService->index($limit,$page,$search);
+        // dd($dataOutput->data->links);
+        return view('suplier.index')
+            ->with('suplier',$dataOutput);
     }
 
     public function data(Request $request){
         $nama_url       = "/produk"; 
         $limit          = $request->input('per_page');
         $start          = $request->input('start');
+        $limit          = $request->input('limit') ?? 0;
     
-        // $page           = Ceil($start/$limit)+1;
-        // $search         = $_POST['search'];
-        $page           = 1; 
+        if($limit == 0){
+            $page = 1;
+        }else{
+            $page           = Ceil($start/$limit)+1;
+        }
         $search         = $request->input('search');
         $coba           = "";
-        $disini         = "15";
+        $disini         = "10";
 
         $dataOutput     = $this->suplierService->index($limit,$page,$search);
         $totalData      = $dataOutput->data->total;
